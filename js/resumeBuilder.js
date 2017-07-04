@@ -7,7 +7,7 @@
       mobile: '202-368-5848',
       email: 'menglin2727@gmail.com',
       github: 'https://github.com/mengdage',
-      location: '516 Main ST, New York City, NY'
+      location: 'New York City, NY'
     },
     welcomeMessage: 'Hello!',
     skills: [
@@ -19,7 +19,7 @@
     schools: [
       {
         name: 'George Washington University',
-        location: 'Wasingtong D.C. US',
+        location: 'Wasington, D.C. US',
         degree: 'M.S.',
         majors: ['Computer Science'],
         dates: '01-2014 to 01-2016',
@@ -27,7 +27,7 @@
       },
       {
         name: 'Sichuan University',
-        location: 'SiChuan China',
+        location: 'SiChuan, China',
         degree: 'B.Eng.',
         majors: ['Software Engineer'],
         dates: '09-2009 to 06-2014',
@@ -35,23 +35,22 @@
       }
     ],
     onlineCourses: [
-      {
-        title: 'title',
-        school: 'school',
-        dates: 'date',
-        url: 'url'
-      }
+      // {
+      //   title: 'title',
+      //   school: 'school',
+      //   dates: 'date',
+      //   url: 'url'
+      // }
     ],
   },
   work = {
     jobs: [
       {
-      employer: 'Harvar School of Public Health',
+      employer: 'Harvard School of Public Health',
       title: 'Research Assistant',
-      location: 'Boston',
+      location: 'Boston, MA',
       dates: '06-2016 to 12-2016',
-      description: 'xxx'
-
+      description: 'Worked as a research assistant. Participated in research activities and implemented algorithms into programs.'
       }
     ],
   },
@@ -59,9 +58,17 @@
     projects: [
       {
         title: 'A Clone of the Frogger Game',
-        dates: 'sss',
+        dates: 'May 2017',
         description: 'A clone of the popular frogger game, which features a character selection menu, a persistent scoreboard, and mobile support. Built with HTML5 canvas. Use browser’s local storage and Web Audio API to increase user experience.',
-        url: 'images/Frogger-300w.png'
+        images: ['images/Frogger-300w.png'],
+        url: 'https://github.com/mengdage/frontend-nanodegree-arcade-game'
+      },
+      {
+        title: 'Chrome Tabs Manager',
+        dates: 'May 2015',
+        description: 'A Chrome extension that helps users manage Chrome tabs, including searching, closing, rearranging tabs. Wrote the popup in AngularJS. Added a new JavaScript-accessible Chromium API to return least frequently used tabs.',
+        images: ['images/GoodTaber-300w.png'],
+        url: 'https://github.com/mengdage/goodtaber'
       }
     ],
     display: function() {
@@ -70,6 +77,7 @@
   };
   bio.display = function() {
     var headerEle = $('#header'),
+        footerContactEle = $('#footerContacts'),
         topContacts = $('#topContacts'),
         skillsStartEle = $(HTMLskillsStart),
         skillsListEle = $(skillsStartEle[1]);
@@ -99,6 +107,11 @@
       .append(formattedEmail)
       .append(formattedGithub)
       .append(formattedLocation);
+    footerContactEle
+      .append(formattedMobile)
+      .append(formattedEmail)
+      .append(formattedGithub)
+      .append(formattedLocation);
     headerEle
       .append(formattedMsg)
       .append(formattedBioPic)
@@ -121,15 +134,16 @@
 
       schoolStartEle = $(HTMLschoolStart);
       schoolStartEle
-        .append(formattedSchoolName)
-        .append(formattedSchoolDegree)
+        .append(formattedSchoolName + formattedSchoolDegree)
         .append(formattedSchoolDates)
         .append(formattedSchoolLocation)
         .append(formattedSchoolMajor);
       educationEle.append(schoolStartEle);
     });
 
-    educationEle.append(HTMLonlineClasses);
+    if(this.onlineCourses.length > 0) {
+      educationEle.append(HTMLonlineClasses);
+    }
     this.onlineCourses.forEach(function(course) {
       var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', course.title),
           formattedOnlineSchool = HTMLonlineSchool.replace('%data%', course.school),
@@ -158,8 +172,7 @@
 
       workStart = $(HTMLworkStart);
       workStart
-        .append(formattedWorkEmployer)
-        .append(formattedWorkTitle)
+        .append(formattedWorkEmployer+formattedWorkTitle)
         .append(formattedWorkDates)
         .append(formattedWorkLocation)
         .append(formattedWorkDescription);
@@ -169,25 +182,44 @@
   };
 
   projects.display = function() {
-    var projectEle = $('#projects'),
-        projectStart;
+    var projectEle = $('#projects'), // the element where projects stay on the main page
+        projectStart;                // container for a project
     this.projects.forEach(function(project) {
-      var formattedPorjectTitle = HTMLprojectTitle.replace('%data%', project.title),
+      // create formatted strings
+      var formattedPorjectTitle = HTMLprojectTitle.replace('#', project.url).replace('%data%', project.title),
           formattedProjectDates = HTMLprojectDates.replace('%data%', project.dates),
           formattedProjectDescription = HTMLprojectDescription.replace('%data%', project.description),
-          formattedProjectImg = HTMLprojectImage.replace('%data%', project.url);
+          formattedProjectImg = '';
+      project.images.forEach(function(image) {
+        formattedProjectImg += HTMLprojectImage.replace('%data%', image);
+      });
+
+      // create a container for a project
       projectStart = $(HTMLprojectStart);
+      // populate the container
       projectStart
         .append(formattedPorjectTitle)
         .append(formattedProjectDates)
         .append(formattedProjectDescription)
         .append(formattedProjectImg);
+      // append the container to the main page
       projectEle.append(projectStart);
     });
   };
 
+  function addMap() {
+    var mapDiv = $('#mapDiv');
+    mapDiv.html(googleMap);
+  }
+
+  // display resume content
   bio.display();
   education.display();
   work.display();
   projects.display();
+  addMap();
+
+  global.bio = bio;
+  global.education = education;
+  global.work = work;
 })(self);
