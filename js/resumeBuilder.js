@@ -1,5 +1,6 @@
 (function(global){
   'use strict';
+
   var bio ={
     name: 'Meng Lin',
     role: 'Front-End Developer',
@@ -7,7 +8,7 @@
       mobile: '202-368-5848',
       email: 'menglin2727@gmail.com',
       github: 'https://github.com/mengdage',
-      location: 'New York City, NY'
+      location: '516 Main Street, New York City, NY 10044'
     },
     welcomeMessage: 'Hello!',
     skills: [
@@ -19,7 +20,7 @@
     schools: [
       {
         name: 'George Washington University',
-        location: 'Wasington, D.C. US',
+        location: '2121 I St NW, Washington, DC 20052',
         degree: 'M.S.',
         majors: ['Computer Science'],
         dates: '01-2014 to 01-2016',
@@ -35,12 +36,12 @@
       }
     ],
     onlineCourses: [
-      // {
-      //   title: 'title',
-      //   school: 'school',
-      //   dates: 'date',
-      //   url: 'url'
-      // }
+      {
+        title: 'Front-End Web Developer Nanodegree Program',
+        school: 'Udacity',
+        dates: '05-2017 to current',
+        url: 'https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001'
+      }
     ],
   },
   work = {
@@ -48,7 +49,7 @@
       {
       employer: 'Harvard School of Public Health',
       title: 'Research Assistant',
-      location: 'Boston, MA',
+      location: '677 Huntington Ave, Boston, MA 02115',
       dates: '06-2016 to 12-2016',
       description: 'Worked as a research assistant. Participated in research activities and implemented algorithms into programs.'
       }
@@ -75,6 +76,8 @@
 
     }
   };
+
+  // display bio data
   bio.display = function() {
     var headerEle = $('#header'),
         footerContactEle = $('#footerContacts'),
@@ -96,28 +99,24 @@
         formattedBioPic = HTMLbioPic.replace('%data%', this.biopic),
         formattedMsg = HTMLwelcomeMsg.replace('%data%', this.welcomeMessage),
         formattedSkill = '';
-
     this.skills.forEach(function(skill) {
       formattedSkill = HTMLskills.replace('%data%', skill);
       skillsListEle.append(formattedSkill);
     });
 
     topContacts
-      .append(formattedMobile)
-      .append(formattedEmail)
-      .append(formattedGithub)
-      .append(formattedLocation);
+      .html(formattedMobile + formattedEmail +
+        formattedGithub + formattedLocation);
     footerContactEle
-      .append(formattedMobile)
-      .append(formattedEmail)
-      .append(formattedGithub)
-      .append(formattedLocation);
+      .html(formattedMobile + formattedEmail +
+        formattedGithub + formattedLocation);
     headerEle
       .append(formattedMsg)
       .append(formattedBioPic)
       .append(skillsStartEle);
   };
 
+  // display education data
   education.display = function() {
     var educationEle = $('#education'),
         schoolStartEle;
@@ -134,10 +133,9 @@
 
       schoolStartEle = $(HTMLschoolStart);
       schoolStartEle
-        .append(formattedSchoolName + formattedSchoolDegree)
-        .append(formattedSchoolDates)
-        .append(formattedSchoolLocation)
-        .append(formattedSchoolMajor);
+        .html(formattedSchoolName + formattedSchoolDegree +
+          formattedSchoolDates + formattedSchoolLocation +
+          formattedSchoolMajor);
       educationEle.append(schoolStartEle);
     });
 
@@ -145,20 +143,19 @@
       educationEle.append(HTMLonlineClasses);
     }
     this.onlineCourses.forEach(function(course) {
-      var formattedOnlineTitle = HTMLonlineTitle.replace('%data%', course.title),
+      var formattedOnlineTitle = HTMLonlineTitle.replace('#', course.url).replace('%data%', course.title),
           formattedOnlineSchool = HTMLonlineSchool.replace('%data%', course.school),
           formattedOnlineDates = HTMLonlineDates.replace('%data%', course.dates),
-          formattedOnlineURL = HTMLonlineURL.replace('%data%', course.url);
+          formattedOnlineURL = HTMLonlineURL.replace('#', course.url).replace('%data%', course.url);
       schoolStartEle = $(HTMLschoolStart);
       schoolStartEle
-        .append(formattedOnlineTitle)
-        .append(formattedOnlineSchool)
-        .append(formattedOnlineDates)
-        .append(formattedOnlineURL);
+        .html(formattedOnlineTitle + formattedOnlineSchool +
+          formattedOnlineDates + formattedOnlineURL);
       educationEle.append(schoolStartEle);
     });
   };
 
+  // display work data
   work.display = function() {
     var workEle = $('#workExperience'),
         workStart;
@@ -181,6 +178,7 @@
     });
   };
 
+  // display projects data
   projects.display = function() {
     var projectEle = $('#projects'), // the element where projects stay on the main page
         projectStart;                // container for a project
@@ -209,7 +207,7 @@
 
   function addMap() {
     var mapDiv = $('#mapDiv');
-    mapDiv.html(googleMap);
+    mapDiv.append(googleMap);
   }
 
   // display resume content
