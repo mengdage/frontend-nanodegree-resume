@@ -22,11 +22,12 @@ h6 {
 .work-entry,
 .project-entry {
   padding: 0 5%;
+  overflow: auto;
 }
 
 h1 {
   font-size: 40px;
-  color: #f5a623;
+  color: #f3f3f3;
   line-height: 48px;
   display: inline;
 }
@@ -34,7 +35,7 @@ h1 {
 h2 {
   font-weight: bold;
   font-size: 24px;
-  color: #999;
+  color: #8e8e8e;
   line-height: 29px;
   padding: 10px;
 }
@@ -42,7 +43,7 @@ h2 {
 h3 {
   font-style: italic;
   font-size: 20px;
-  color: #000;
+  color: #474747;
   line-height: 22px;
 }
 
@@ -79,6 +80,30 @@ h5 {
 
 }
 
+.mobile:before {
+  content: "\f10b";
+  font-family: FontAwesome;
+  font-size: 1.4em;
+}
+
+.email:before {
+  content: "\f0e0";
+  font-family: FontAwesome;
+  font-size: 1.4em;
+}
+
+.github:before {
+  content: "\f113";
+  font-family: FontAwesome;
+  font-size: 1.4em;
+}
+
+.address:before {
+  content: "\f2b9";
+  font-family: FontAwesome;
+  font-size: 1.4em;
+}
+
 p {
   font-size: 14px;
   color: #333;
@@ -89,27 +114,31 @@ a {
   color: #1199c3;
   text-decoration: none;
   margin-top: 10px;
+  margin-bottom: 5px;
   display: block;
+}
+
+.project-title:after {
+  content: ' \f09b';
+  font-family: FontAwesome;
+}
+
+.school-link:after, .class-link:after {
+  content: ' \f08e';
+  font-family: FontAwesome;
 }
 
 .welcome-message {
   font-style: italic;
-  font-size: 18px;
+  font-size: 16px;
   color: #f3f3f3;
   line-height: 28px;
 }
 
+
 #skills-h3 {
-  color: #f5ae23;
+  color: #f3f3f3;
   display: none;
-}
-
-.orange {
-  background-color: #f5ae23;
-}
-
-.orange-text {
-  color: #f5ae23;
 }
 
 .white-text {
@@ -129,7 +158,7 @@ a {
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
+  background-color: #8e8e8e;
 }
 
 .flex-box {
@@ -138,13 +167,6 @@ a {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-  padding: 10px;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
   padding: 10px;
 }
 
@@ -160,7 +182,8 @@ ul {
   float: left;
   padding: 10px;
   width: 200px;
-  display: none;
+  display: block;
+  border-radius: 20px;
 }
 
 img {
@@ -175,11 +198,17 @@ span {
   text-align: center;
 }
 
+.connect {
+  background-color: #f3f3f3;
+}
 /* Media queries to handle various device widths */
 
 @media only screen and (max-width: 1024px) {
   #lets-connect {
     margin-top: 5%;
+  }
+  .address-text {
+    display: none;
   }
 }
 
@@ -195,6 +224,8 @@ span {
   }
   .biopic {
     width: 150px;
+    margin: 0 auto;
+    float:none;
   }
   .welcome-message {
     display: none;

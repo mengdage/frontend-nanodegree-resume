@@ -10,9 +10,11 @@
       github: 'https://github.com/mengdage',
       location: '516 Main Street, New York City, NY 10044'
     },
-    welcomeMessage: 'Hello!',
+    welcomeMessage: 'Hi! I\'m Meng Lin. I\'m a Computer Science Master with 6 years’ programming experience '+
+                'in C/C++ and Java, and 1 year’s experience in JavaScript. I\'m currently learning front-end development ' +
+                'and seeking a full-time job as a junior software developer role.',
     skills: [
-      'Front-End Development', 'Data Analysis', 'Machine Learning'
+      'HTML', 'CSS', 'JavaScript', 'jQuery', 'Promise', 'AJAX', 'React', 'AngularJS', 'Grunt'
     ],
     biopic: 'images/menglin.jpg',
   },
@@ -30,7 +32,7 @@
         name: 'Sichuan University',
         location: 'SiChuan, China',
         degree: 'B.Eng.',
-        majors: ['Software Engineer'],
+        majors: ['Software Engineering'],
         dates: '09-2009 to 06-2014',
         url: 'http://www.scu.edu.cn/en/'
       }
@@ -111,8 +113,8 @@
       .html(formattedMobile + formattedEmail +
         formattedGithub + formattedLocation);
     headerEle
-      .append(formattedMsg)
       .append(formattedBioPic)
+      .append(formattedMsg)
       .append(skillsStartEle);
   };
 
@@ -150,7 +152,7 @@
       schoolStartEle = $(HTMLschoolStart);
       schoolStartEle
         .html(formattedOnlineTitle + formattedOnlineSchool +
-          formattedOnlineDates + formattedOnlineURL);
+          formattedOnlineDates);
       educationEle.append(schoolStartEle);
     });
   };
