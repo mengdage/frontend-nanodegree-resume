@@ -40,7 +40,21 @@ var HTMLprojectStart = '<div class="project-entry"></div>';
 var HTMLprojectTitle = '<a class="project-title" href="#">%data%</a>';
 var HTMLprojectDates = '<div class="date-text">%data%</div>';
 var HTMLprojectDescription = '<p><br>%data%</p>';
-var HTMLprojectImage = '<img src="%data%">';
+var HTMLprojectImage = `
+        <div>
+          <div class="collapse" id="%id%">
+            <img src="%data%">
+          </div>
+          <a class="toggle-image"
+            data-toggle="collapse"
+            href="#%id%"
+            aria-expanded="false"
+            aria-controls="collapseImages">
+            show image
+          </a>
+        </div>
+        `;
+
 
 var HTMLschoolStart = '<div class="education-entry"></div>';
 var HTMLschoolName = '<a class="school-link" href="#">%data%';

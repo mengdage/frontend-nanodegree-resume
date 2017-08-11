@@ -193,6 +193,11 @@ ul {
   border-radius: 20px;
 }
 
+.toggle-image {
+  text-align: center;
+
+}
+
 #lets-connect {
   text-align: center;
 }

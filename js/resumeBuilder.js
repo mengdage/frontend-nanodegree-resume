@@ -10,11 +10,11 @@
       github: 'https://github.com/mengdage',
       location: '516 Main Street, New York City, NY 10044'
     },
-    welcomeMessage: 'Hi! I\'m Meng Lin. I\'m a Computer Science Master with 6 years’ programming experience '+
+    welcomeMessage: 'Hi! I\'m Meng Lin. I\'m a Master of Science in Computer Science with 6 years’ programming experience '+
                 'in C/C++ and Java, and 1 year’s experience in JavaScript. I\'m currently learning front-end development ' +
                 'and seeking a full-time job as a junior software developer role.',
     skills: [
-      'HTML', 'CSS', 'JavaScript', 'jQuery', 'Promise', 'AJAX', 'React', 'AngularJS', 'Grunt'
+      'HTML5', 'CSS3', 'JavaScript', 'ES6', 'jQuery', 'React/Redux', 'Bootstrap','KnockoutJS', 'AngularJS', 'Grunt', 'Gulp'
     ],
     biopic: 'images/menglin.jpg',
   },
@@ -41,8 +41,8 @@
       {
         title: 'Front-End Web Developer Nanodegree Program',
         school: 'Udacity',
-        dates: '05-2017 to current',
-        url: 'https://www.udacity.com/course/front-end-web-developer-nanodegree--nd001'
+        dates: '05-2017 to 07-2017',
+        url: 'https://printer.udacity.com/certificate/nd001'
       }
     ],
   },
@@ -60,9 +60,23 @@
   projects ={
     projects: [
       {
+        title: 'MyReads, a bookshelf app',
+        dates: 'Jul. 2017',
+        description: 'A bookshelf application built with React that allows users to manage books by interacting with a backend server.',
+        images: ['images/myreads-300w.jpg'],
+        url: 'https://github.com/mengdage/frontend-nanodegree-arcade-game'
+      },
+      {
+        title: 'Neighborhood Map',
+        dates: 'Jul. 2017',
+        description: 'A single-page web application features a map of a neighborhood by utilizing Google Maps API.',
+        images: ['images/NeighborhoodMap-300w.jpg'],
+        url: 'https://github.com/mengdage/frontend-nanodegree-arcade-game'
+      },
+      {
         title: 'A Clone of the Frogger Game',
-        dates: 'May 2017',
-        description: 'A clone of the popular frogger game, which features a character selection menu, a persistent scoreboard, and mobile support. Built with HTML5 canvas. Use browser’s local storage and Web Audio API to increase user experience.',
+        dates: 'Jun. 2017',
+        description: 'A clone of the frogger game, which features a character selection menu, a persistent scoreboard, and mobile support.',
         images: ['images/Frogger-300w.png'],
         url: 'https://github.com/mengdage/frontend-nanodegree-arcade-game'
       },
@@ -184,15 +198,17 @@
   projects.display = function() {
     var projectEle = $('#projects'), // the element where projects stay on the main page
         projectStart;                // container for a project
-    this.projects.forEach(function(project) {
+
+    this.projects.forEach(function(project, pid) {
       // create formatted strings
       var formattedPorjectTitle = HTMLprojectTitle.replace('#', project.url).replace('%data%', project.title),
           formattedProjectDates = HTMLprojectDates.replace('%data%', project.dates),
           formattedProjectDescription = HTMLprojectDescription.replace('%data%', project.description),
           formattedProjectImg = '';
       project.images.forEach(function(image) {
-        formattedProjectImg += HTMLprojectImage.replace('%data%', image);
+        formattedProjectImg += HTMLprojectImage.replace('%data%', image).replace(/%id%/g, 'project' + pid);
       });
+      // projectImageContainer.find('#project-image-container').append(formattedProjectImg);
 
       // create a container for a project
       projectStart = $(HTMLprojectStart);
