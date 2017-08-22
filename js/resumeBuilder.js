@@ -52,7 +52,7 @@
       employer: 'Harvard School of Public Health',
       title: 'Research Assistant',
       location: '677 Huntington Ave, Boston, MA 02115',
-      dates: '06-2016 to 12-2016',
+      dates: '06-2016 to 02-2017',
       description: 'Worked as a research assistant. Participated in research activities and implemented algorithms into programs.'
       }
     ],
